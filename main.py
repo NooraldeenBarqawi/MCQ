@@ -1,16 +1,14 @@
-# This is a sample Python script.
+from langchain.prompts import PromptTemplate
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import LLMChain
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+Subject="math"
+quiz_template=""""Write a 5 multiple-choice questions about {Subject} Each question should have at
+least 4 answers ,the output should be structures like this json{{question1:the question,answers:[],answer:the correct answer}}
+"""
+quiz_prompt_template=PromptTemplate(input_variables=["Subject"],template=quiz_template)
 
+llm=ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+chain=LLMChain(llm=llm,prompt=quiz_prompt_template)
+print(chain.run(Subject=Subject))
