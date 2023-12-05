@@ -13,7 +13,7 @@ with st.sidebar:
     formInPut.header("MCQ Generator")
     formInPut.write("Generate multiple-choice question for any topic")
     st.session_state.topic = st.text_input("Enter a topic")
-    st.session_state.y = st.number_input(label="Number of question ", value=None, placeholder="Type a number...")
+    st.session_state.y = st.number_input(label="Number of questions ", value=None, placeholder="Type a number...")
     container = st.container(border=True)
     submitted = formInPut.form_submit_button("Generate")
 
