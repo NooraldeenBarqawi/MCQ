@@ -10,8 +10,7 @@ def creatQuestions(Subject,num):
     """
     quiz_prompt_template = PromptTemplate(input_variables=["Subject","num"], template=quiz_template)
 
-    llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo",
-                     openai_api_key="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")
+    llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo",openai_api_key="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")
 
     chain = LLMChain(llm=llm, prompt=quiz_prompt_template)
     return (chain.run(Subject=Subject,num=num))
